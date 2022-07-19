@@ -215,11 +215,11 @@ public class SellerDaoJDBC implements SellerDao {
 			rs = st.executeQuery();
 			
 			List<Seller> list = new ArrayList<>();
-			Map<Integer, Department> map = new HashMap<>();
+			Map<Integer, Department> map = new HashMap<>();//cria map vazio para controle para nao repeticao do departamento
 			
 			while (rs.next()) {
 				
-				Department dep = map.get(rs.getInt("DepartmentId"));
+				Department dep = map.get(rs.getInt("DepartmentId"));// testa se depto jah existe
 				
 				if (dep == null) {
 					dep = instantiateDepartment(rs);
