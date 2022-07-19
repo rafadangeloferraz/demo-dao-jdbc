@@ -13,7 +13,7 @@ public class Seller implements Serializable {
 	private Date birthDate;
 	private Double baseSalary;
 	
-	private Department department;
+	private Department department;// seller tem tb associação com departamento
 	
 	public Seller() {
 	}
