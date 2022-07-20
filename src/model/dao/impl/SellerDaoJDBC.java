@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.mysql.jdbc.Statement;
 
 import db.DB;
 import db.DbException;
@@ -34,7 +33,7 @@ public class SellerDaoJDBC implements SellerDao {
 					+ "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?)",
-					Statement.RETURN_GENERATED_KEYS);
+					Statement.RETURN_GENERATED_KEYS);//comando para retornar o ID do novo vendedor inserido
 			
 			st.setString(1, obj.getName());
 			st.setString(2, obj.getEmail());
@@ -44,7 +43,7 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			int rowsAffected = st.executeUpdate();
 			
-			if (rowsAffected > 0) {
+			if (rowsAffected > 0) {// > que zeros significa que inseriu
 				ResultSet rs = st.getGeneratedKeys();
 				if (rs.next()) {
 					int id = rs.getInt(1);
